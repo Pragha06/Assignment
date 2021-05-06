@@ -1,13 +1,13 @@
-import java.util.ArrayList;
+import java.util.Date;
 
 class Patient
 {
     private String name;
     private String location;
-    private String registeredDate;
+    private Date registeredDate;
     private Boolean isOutPatient;
 
-    Patient(String name,String location,String registeredDate,Boolean isOutPatient)
+    Patient(String name, String location, Date registeredDate, Boolean isOutPatient)
     {
         this.name=name;
         this.location=location;
@@ -15,12 +15,17 @@ class Patient
         this.isOutPatient=isOutPatient;
     }
 
-    public String getLocation()
+    public Boolean getisOutPatient()
+    {
+        return isOutPatient;
+    }
+
+    public String getPatientLocation()
     {
         return location;
     }
 
-    public String getDate()
+    public Date getRegisteredDate()
     {
         return registeredDate;
     }

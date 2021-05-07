@@ -1,30 +1,38 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Hospital {
 
-    private ArrayList<Patient> patients = new ArrayList<Patient>();
+    private static String hospitalLocation;
+    private ArrayList<Patient> patients;
 
+    Hospital()
+    {
+        patients = new ArrayList<Patient>();
+        hospitalLocation="Bangalore";
+    }
     void addPatient(Patient patient)
     {
         patients.add(patient);
     }
 
-    int findOutPatientPercentage(Date startDate,Date endDate)
+
+    double findOutPatientPercentage(LocalDate startDate, LocalDate endDate)
     {
-        int percentage=0;
+        double percentage=0.0;
         int localOutPatient=0;
         int outOfStationOutPatient=0;
         int outPatientTotal=0;
+
         for(Patient patient:patients) {
             String patientLocation = patient.getPatientLocation();
-            Date patientRegisteredDate = patient.getRegisteredDate();
-            Boolean isOutPatient = patient.getisOutPatient();
+            LocalDate patientRegisteredDate = patient.getRegisteredDate();
+            boolean isOutPatient = patient.getisOutPatient();
             if (isOutPatient) {
                 /* Filter with Date */
-                if ((patientRegisteredDate.equals(startDate) || patientRegisteredDate.after(startDate)) && (patientRegisteredDate.equals(endDate) || patientRegisteredDate.before(endDate)))
+                if (patientRegisteredDate.compareTo(startDate)>=0 && patientRegisteredDate.compareTo(endDate)<=0)
                 {
-                    if (patientLocation.equals("Bangalore"))
+                    if (patientLocation.equals(hospitalLocation))
                         localOutPatient++;
 
                     else
@@ -34,7 +42,7 @@ public class Hospital {
             }
         }
         outPatientTotal=localOutPatient+outOfStationOutPatient;
-        percentage=(localOutPatient*100)/outPatientTotal;
+        percentage= new Double((localOutPatient*100)/outPatientTotal);
         return percentage;
     }
 

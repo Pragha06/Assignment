@@ -1,13 +1,13 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 class Patient
 {
     private String name;
     private String location;
-    private Date registeredDate;
-    private Boolean isOutPatient;
+    private LocalDate registeredDate;
+    private boolean isOutPatient;
 
-    Patient(String name, String location, Date registeredDate, Boolean isOutPatient)
+    Patient(String name, String location, LocalDate registeredDate, boolean isOutPatient)
     {
         this.name=name;
         this.location=location;
@@ -15,7 +15,7 @@ class Patient
         this.isOutPatient=isOutPatient;
     }
 
-    public Boolean getisOutPatient()
+    public boolean getisOutPatient()
     {
         return isOutPatient;
     }
@@ -25,7 +25,7 @@ class Patient
         return location;
     }
 
-    public Date getRegisteredDate()
+    public LocalDate getRegisteredDate()
     {
         return registeredDate;
     }

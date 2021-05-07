@@ -6,14 +6,14 @@ public class CheckNewBranchFeasibility {
     @Test
     public void moreNumberOfLocalOutPatient()
     {
-        Patient p1=new Patient("Joe","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p2=new Patient("Durai","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p3=new Patient("Priya","Bangalore",LocalDate.of(2021,05,02),true);
-        Patient p4=new Patient("Sowmia","Bangalore",LocalDate.of(2021,05,03),true);
-        Patient p5=new Patient("Johnson","Mangalore",LocalDate.of(2021,05,04),true);
-        Patient p6=new Patient("Janani","Coimbatore",LocalDate.of(2021,05,04),true);
-        Patient p7=new Patient("Mark","Coimbatore",LocalDate.of(2021,05,05),false);
-        Patient p8=new Patient("Hari","Coimbatore",LocalDate.of(2021,05,06),false);
+        Patient p1=new Patient("Joe","P1", Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p2=new Patient("Durai","P2",Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p3=new Patient("Priya","P3",Patient.Location.Bangalore,LocalDate.of(2021,05,02),true);
+        Patient p4=new Patient("Sowmia","P4",Patient.Location.Bangalore,LocalDate.of(2021,05,03),true);
+        Patient p5=new Patient("Johnson","P5",Patient.Location.Mangalore,LocalDate.of(2021,05,04),true);
+        Patient p6=new Patient("Janani","P6",Patient.Location.Coimbatore,LocalDate.of(2021,05,04),true);
+        Patient p7=new Patient("Mark","P7",Patient.Location.Coimbatore,LocalDate.of(2021,05,05),false);
+        Patient p8=new Patient("Hari","P8",Patient.Location.Coimbatore,LocalDate.of(2021,05,06),false);
 
         Hospital chinmayaHospital= new Hospital();
 
@@ -37,14 +37,14 @@ public class CheckNewBranchFeasibility {
     @Test
     public void moreNumberOfOutStationPatient()
     {
-        Patient p1=new Patient("Joe","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p2=new Patient("Durai","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p3=new Patient("Priya","Bangalore",LocalDate.of(2021,05,02),true);
-        Patient p4=new Patient("Sowmia","Mumbai",LocalDate.of(2021,05,03),true);
-        Patient p5=new Patient("Johnson","Mangalore",LocalDate.of(2021,05,04),true);
-        Patient p6=new Patient("Janani","Coimbatore",LocalDate.of(2021,05,04),true);
-        Patient p7=new Patient("Mark","Coimbatore",LocalDate.of(2021,05,05),true);
-        Patient p8=new Patient("Hari","Coimbatore",LocalDate.of(2021,05,06),true);
+        Patient p1=new Patient("Joe","P1",Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p2=new Patient("Durai","P2",Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p3=new Patient("Priya","P3",Patient.Location.Bangalore,LocalDate.of(2021,05,02),true);
+        Patient p4=new Patient("Sowmia","P4",Patient.Location.Mumbai,LocalDate.of(2021,05,03),true);
+        Patient p5=new Patient("Johnson","P5",Patient.Location.Coimbatore,LocalDate.of(2021,05,04),true);
+        Patient p6=new Patient("Janani","P6",Patient.Location.Coimbatore,LocalDate.of(2021,05,04),true);
+        Patient p7=new Patient("Mark","P7",Patient.Location.Coimbatore,LocalDate.of(2021,05,05),true);
+        Patient p8=new Patient("Hari","P8",Patient.Location.Coimbatore,LocalDate.of(2021,05,06),true);
 
         Hospital ChinmayaHospital= new Hospital();
 
@@ -68,14 +68,14 @@ public class CheckNewBranchFeasibility {
     @Test
     public void equalNumberOfOutPatients()
     {
-        Patient p1=new Patient("Joe","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p2=new Patient("Durai","Bangalore",LocalDate.of(2021,05,01),true);
-        Patient p3=new Patient("Priya","Bangalore",LocalDate.of(2021,05,02),true);
-        Patient p4=new Patient("Sowmia","Bangalore",LocalDate.of(2021,05,03),true);
-        Patient p5=new Patient("Johnson","Mangalore",LocalDate.of(2021,05,04),true);
-        Patient p6=new Patient("Janani","Coimbatore",LocalDate.of(2021,05,04),true);
-        Patient p7=new Patient("Mark","Coimbatore",LocalDate.of(2021,05,05),true);
-        Patient p8=new Patient("Hari","Coimbatore",LocalDate.of(2021,05,06),true);
+        Patient p1=new Patient("Joe","P1",Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p2=new Patient("Durai","P2",Patient.Location.Bangalore,LocalDate.of(2021,05,01),true);
+        Patient p3=new Patient("Priya","P3",Patient.Location.Bangalore,LocalDate.of(2021,05,02),true);
+        Patient p4=new Patient("Sowmia","P4",Patient.Location.Bangalore,LocalDate.of(2021,05,03),true);
+        Patient p5=new Patient("Johnson","P5",Patient.Location.Coimbatore,LocalDate.of(2021,05,04),true);
+        Patient p6=new Patient("Janani","P6",Patient.Location.Coimbatore,LocalDate.of(2021,05,04),true);
+        Patient p7=new Patient("Mark","P7",Patient.Location.Coimbatore,LocalDate.of(2021,05,05),true);
+        Patient p8=new Patient("Hari","P8",Patient.Location.Coimbatore,LocalDate.of(2021,05,06),true);
 
         Hospital ChinmayaHospital= new Hospital();
 

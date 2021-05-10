@@ -1,83 +1,71 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Hospital {
 
-    private static String hospitalLocation;
-    private ArrayList<Patient> patients;
+    private String hospitalLocation;
+    private List<Patient> patients;
 
     Hospital() {
         patients = new ArrayList<>();
         hospitalLocation = "Bangalore";
+
     }
 
     void addPatient(Patient patient) {
         patients.add(patient);
     }
 
+    public ArrayList<Patient> filterOutPatient()
+    {
+        return (ArrayList<Patient>)  patients.stream().filter(Patient::getisOutPatient).collect(Collectors.toList());
+    }
+
+    public ArrayList<Patient> filterListOfPatientByDateRange(LocalDate startDate, LocalDate endDate, ArrayList<Patient> listOfPatients)
+    {
+          return (ArrayList<Patient>) listOfPatients.stream().filter(patient -> patient.getListOfVisits().iterator().next().getVisitedDate().compareTo(startDate)>=0 && patient.getListOfVisits().iterator().next().getVisitedDate().compareTo(endDate)<=0).collect(Collectors.toList());
+    }
+
+    public ArrayList<Patient> filterOutStationPatient(ArrayList<Patient> listOfPatients)
+    {
+        return (ArrayList<Patient>) listOfPatients.stream().filter(p-> !p.getPatientLocation().toString().equals(hospitalLocation)).collect(Collectors.toList());
+    }
+
+    public ArrayList<Patient> filterLocalPatient(ArrayList<Patient> listOfPatients)
+    {
+        return (ArrayList<Patient>) listOfPatients.stream().filter(p-> p.getPatientLocation().toString().equals(hospitalLocation)).collect(Collectors.toList());
+    }
+
 
     double findOutPatientPercentage(LocalDate startDate, LocalDate endDate) {
-        double percentage;
-        int localOutPatient = 0;
-        int outOfStationOutPatient = 0;
+        int localOutPatient;
         int outPatientTotal;
+        double percentage;
 
-        for (Patient patient : patients) {
-            String patientLocation = patient.getPatientLocation().toString();
-            LocalDate patientRegisteredDate = patient.getRegisteredDate();
-            boolean isOutPatient = patient.getisOutPatient();
-            if (isOutPatient) {
-                /* Filter with Date */
-                if (patientRegisteredDate.compareTo(startDate) >= 0 && patientRegisteredDate.compareTo(endDate) <= 0) {
-                    if (patientLocation.equals(hospitalLocation))
-                        localOutPatient++;
+        ArrayList<Patient> outPatientList=filterOutPatient();
+        ArrayList<Patient> outPatientListForNDays=filterListOfPatientByDateRange(startDate,endDate,outPatientList);
+        outPatientTotal = outPatientListForNDays.size();
+        localOutPatient=filterLocalPatient(outPatientListForNDays).size();
+        filterLocalPatient(outPatientListForNDays);
 
-                    else
-                        outOfStationOutPatient++;
-
-                }
-            }
-        }
-        outPatientTotal = localOutPatient + outOfStationOutPatient;
-        percentage = (localOutPatient * 100) / outPatientTotal;
+        percentage = (double) (localOutPatient * 100) / outPatientTotal;
         return percentage;
     }
 
 
-    int findLocalOutPatientVisitedInLastthreeDays() {
+    int findLocalOutPatientVisitedInLastNDays(int n) {
 
-        LocalDate todayDate = LocalDate.now();
-        LocalDate dateFromThreeDaysPast = todayDate.minusDays(2);
-        HashMap<String,String> patientVisitedInLastThreeDays=new HashMap<>();
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusDays(n-1);
 
-        for (Patient patient : patients) {
-            boolean isOutPatient = patient.getisOutPatient();
-            LocalDate patientRegisteredDate = patient.getRegisteredDate();
-            String patientLocation = patient.getPatientLocation().toString();
+        System.out.println(startDate);
+        System.out.println(endDate);
+        ArrayList<Patient> outPatientList=filterOutPatient();
+        ArrayList<Patient> outPatientListForNDays=filterListOfPatientByDateRange(startDate,endDate,outPatientList);
+        return filterLocalPatient(outPatientListForNDays).size();
 
-            if (isOutPatient) {
-                if (patientLocation.equals(hospitalLocation)) {
-                    if (patientRegisteredDate.compareTo(dateFromThreeDaysPast) >= 0 && patientRegisteredDate.compareTo(todayDate) <= 0) {
-                        patientVisitedInLastThreeDays.put(patient.getPatientId(),patient.getPatientName());
-                    }
-                }
-            }
-        }
-        return patientVisitedInLastThreeDays.size();
     }
-
-
-//    void findLocalOutPatient() {
-//        LocalDate todayDate = LocalDate.now();
-//        LocalDate dateFromThreeDaysPast = todayDate.minusDays(2);
-//        patients.stream().filter(patient -> patient.getPatientLocation().equals(hospitalLocation)).
-//                filter(patient -> patient.getRegisteredDate().compareTo(dateFromThreeDaysPast) >= 0 && patient.getRegisteredDate().compareTo(todayDate) <= 0).
-//                collect(Collectors.toMap(patient -> patient.getPatientId(), patient -> patient.getPatientName()));
-
-
-//    }
 
 }
